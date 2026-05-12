@@ -11,6 +11,11 @@ public abstract class Item {
     protected String id;
     protected Status status;
 
+    public Item(Status status) {
+        this.id = String.format("%04d", nextId++);
+        this.status = status;
+    }
+
     public static int nextId = 0;
 
     public abstract void borrowItem();

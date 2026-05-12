@@ -11,6 +11,14 @@ public class Book extends Item {
     private String author;
     private Genre genre;
 
+    public Book(String id, Status status, String ISBN, String title, String author, Genre genre) {
+        super(id, status);
+        this.ISBN = ISBN;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+    }
+
     @Override
     public void borrowItem() {
 

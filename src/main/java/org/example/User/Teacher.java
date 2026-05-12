@@ -11,6 +11,11 @@ import java.util.List;
 public class Teacher extends User {
     private List<Item> borrowedItems;
 
+    public Teacher(String id, String name, List<Item> borrowedItems, List<Item> borrowedItems1) {
+        super(id, name, borrowedItems);
+        this.borrowedItems = borrowedItems1;
+    }
+
     @Override
     public boolean borrowItem() {
         return false;

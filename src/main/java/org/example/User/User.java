@@ -15,6 +15,14 @@ public abstract class User {
     protected String name;
     protected List<Item> borrowedItems;
 
+    public static int nextId = 0;
+
+    public User(String name, List<Item> borrowedItems) {
+        this.id = String.format("%04d", nextId++);
+        this.name = name;
+        this.borrowedItems = borrowedItems;
+    }
+
     public static int nextID = 0;
 
     public abstract boolean borrowItem();

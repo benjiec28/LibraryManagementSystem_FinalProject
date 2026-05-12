@@ -5,12 +5,19 @@ import org.example.Item.Book;
 
 import java.util.List;
 
-@AllArgsConstructor
-@EqualsAndHashCode
 @Getter
 @Setter
 @ToString
-public class Student {
+public class Student extends User {
     private List<Book> borrowedBooks;
 
+    @Override
+    public boolean borrowItem() {
+        return false;
+    }
+
+    @Override
+    public boolean returnItem() {
+        return false;
+    }
 }

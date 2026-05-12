@@ -2,14 +2,23 @@ package org.example.User;
 
 import lombok.*;
 
-@AllArgsConstructor
-@EqualsAndHashCode
 @Getter
 @Setter
 @ToString
-public class Admin {
+public class Admin extends User implements Reportable{
 
+    @Override
     public void generateReport() {
 
+    }
+
+    @Override
+    public boolean borrowItem() {
+        return false;
+    }
+
+    @Override
+    public boolean returnItem() {
+        return false;
     }
 }

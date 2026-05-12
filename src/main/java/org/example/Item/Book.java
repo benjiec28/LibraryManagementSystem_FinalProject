@@ -2,16 +2,24 @@ package org.example.Item;
 
 import lombok.*;
 
-@AllArgsConstructor
-@EqualsAndHashCode
 @Getter
 @Setter
 @ToString
-public class Book {
+public class Book extends Item {
     private String ISBN;
     private String title;
     private String author;
     private Genre genre;
+
+    @Override
+    public void borrowItem() {
+
+    }
+
+    @Override
+    public void returnItem() {
+
+    }
 
     public enum Genre {
         SCIENCE_FICTION,

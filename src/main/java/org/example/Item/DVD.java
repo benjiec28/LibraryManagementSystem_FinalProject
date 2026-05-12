@@ -17,13 +17,4 @@ public class DVD extends Item {
         this.duration = duration;
     }
 
-    @Override
-    public void borrowItem() {
-
-    }
-
-    @Override
-    public void returnItem() {
-
-    }
 }

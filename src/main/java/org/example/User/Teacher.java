@@ -17,12 +17,12 @@ public class Teacher extends User {
     }
 
     @Override
-    public boolean borrowItem() {
+    public boolean borrowItem(Item borrowedItem) {
         return false;
     }
 
     @Override
-    public boolean returnItem() {
+    public boolean returnItem(Item returnedItem) {
         return false;
     }
 }

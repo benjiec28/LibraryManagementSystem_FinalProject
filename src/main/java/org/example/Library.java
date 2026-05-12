@@ -17,41 +17,41 @@ public class Library {
 
 
     public List<Item> recursiveSearchByAuthor() {
-
+        return ;
     }
 
 
     public List<Item> recursiveSearchByTitle() {
-
+        return ;
     }
 
 
     public List<Item> streamSearchByAuthor() {
-
+        return ;
     }
 
 
     public List<Item> streamSearchByTitle() {
-
+        return ;
     }
 
 
-    public boolean addItem() {
-
+    public boolean addItem(Item item) {
+        return;
     }
 
 
-    public boolean removeItem() {
-
+    public boolean removeItem(Item item) {
+        return ;
     }
 
 
     public void loadFileData() {
-
+        return;
     }
 
 
     public void backupFileData() {
-
+        return;
     }
 }

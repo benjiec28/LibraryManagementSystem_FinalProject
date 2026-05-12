@@ -18,13 +18,4 @@ public class Magazine extends Item {
         this.publisher = publisher;
     }
 
-    @Override
-    public void borrowItem() {
-
-    }
-
-    @Override
-    public void returnItem() {
-
-    }
 }

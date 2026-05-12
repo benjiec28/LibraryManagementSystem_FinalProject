@@ -1,13 +1,14 @@
 package org.example.Item;
 
 import lombok.*;
+import org.example.Sortable;
 
 @AllArgsConstructor
 @EqualsAndHashCode
 @Getter
 @Setter
 @ToString
-public abstract class Item {
+public abstract class Item implements Sortable {
     protected String id;
     protected Status status;
 
@@ -16,11 +17,12 @@ public abstract class Item {
         this.status = status;
     }
 
-    public static int nextId = 0;
+    @Override
+    public int compareTo(Object object) {
+        return 0;
+    }
 
-    public abstract void borrowItem();
-
-    public abstract void returnItem();
+    public static int nextId = 1;
 
     public enum Status {
         BORROWED,

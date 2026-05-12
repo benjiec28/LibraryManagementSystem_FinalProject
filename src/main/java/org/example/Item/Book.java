@@ -19,16 +19,6 @@ public class Book extends Item {
         this.genre = genre;
     }
 
-    @Override
-    public void borrowItem() {
-
-    }
-
-    @Override
-    public void returnItem() {
-
-    }
-
     public enum Genre {
         SCIENCE_FICTION,
         ACTION,

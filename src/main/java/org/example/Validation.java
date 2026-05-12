@@ -1,4 +1,12 @@
 package org.example;
 
-public interface Validation {
+public class Validation {
+
+    public boolean isIDValid() {
+
+    }
+
+    public boolean isISBNValid() {
+
+    }
 }

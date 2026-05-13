@@ -2,24 +2,46 @@ package org.example.Item;
 
 import lombok.*;
 
+import java.util.Comparator;
+
 @Getter
 @Setter
 @ToString
-public class Magazine extends Item {
-    private String Title;
+public class Magazine extends Item implements Comparator<Magazine> {
+    private String title;
     private String issueNumber;
     private String publisher;
 
 
     public Magazine(String id, Status status, String title, String issueNumber, String publisher) {
         super(id, status);
-        this.Title = title;
+        this.title = title;
         this.issueNumber = issueNumber;
         this.publisher = publisher;
     }
 
     @Override
-    public int compare(Object o1, Object o2) {
+    public int compare(Magazine o1, Magazine o2) {
+        String field = "";
+
+        switch (field.toLowerCase()) {
+            case "id" -> {
+                return o1.id.compareTo(o2.id);
+            }
+
+            case "title" -> {
+                return o1.title.compareTo(o2.title);
+            }
+
+            case "issue_number" -> {
+                return o1.issueNumber.compareTo(o2.issueNumber);
+            }
+
+            case "publisher" -> {
+                return o1.publisher.compareTo(o2.publisher);
+            }
+        }
+
         return 0;
     }
 }

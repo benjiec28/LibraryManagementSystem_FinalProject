@@ -3,6 +3,7 @@ package org.example.User;
 import lombok.*;
 import org.example.Item.Item;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -20,17 +21,7 @@ public class Admin extends User implements Reportable{
     }
 
     @Override
-    public boolean borrowItem(Item borrowedItem) {
-        return false;
-    }
-
-    @Override
-    public boolean returnItem(Item returnedItem) {
-        return false;
-    }
-
-    @Override
-    public int compare(Object o1, Object o2) {
+    public int compare(Admin o1, Admin o2) {
         return 0;
     }
 }

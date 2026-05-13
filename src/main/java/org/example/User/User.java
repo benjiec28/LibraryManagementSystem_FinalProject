@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public abstract class User implements Comparator {
+public abstract class User {
     protected String id;
     protected String name;
     protected List<Item> borrowedItems;
@@ -26,7 +26,21 @@ public abstract class User implements Comparator {
 
     public static int nextID = 0;
 
-    public abstract boolean borrowItem(Item borrowedItem);
+    /**
+     * borrows an item, adds it to the students list of borrowed books and changes status to BORROWED.
+     * @param borrowedItem the borrowed item.
+     * @return true if the item was successfully borrowed; false if it was not.
+     */
+    public boolean borrowItem(Item borrowedItem) {
 
-    public abstract boolean returnItem(Item returnedItem);
+    }
+
+    /**
+     * returns an item, removes it to the students list of borrowed books and changes status to IN_STORE.
+     * @param returnedItem the returned item.
+     * @return true if the item was successfully returned; false if it was not.
+     */
+    public boolean returnItem(Item returnedItem) {
+
+    }
 }

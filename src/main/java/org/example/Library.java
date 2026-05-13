@@ -16,23 +16,25 @@ public class Library {
     private List<User> users;
 
 
-    public List<Item> recursiveSearchByAuthor() {
+    public List<Item> recursiveSearchByAuthor(String author) {
         return ;
     }
 
 
-    public List<Item> recursiveSearchByTitle() {
+    public List<Item> recursiveSearchByTitle(String title) {
         return ;
     }
 
 
-    public List<Item> streamSearchByAuthor() {
-        return ;
+    public List<Item> streamSearchByAuthor(String author) {
+        return items.stream()
+                .filter();
     }
 
 
-    public List<Item> streamSearchByTitle() {
-        return ;
+    public List<Item> streamSearchByTitle(String title) {
+        return items.stream()
+                .filter();
     }
 
 

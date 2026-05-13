@@ -2,10 +2,12 @@ package org.example.Item;
 
 import lombok.*;
 
+import java.util.Comparator;
+
 @Getter
 @Setter
 @ToString
-public class DVD extends Item {
+public class DVD extends Item implements Comparator<DVD> {
     private String title;
     private String director;
     private int duration;
@@ -18,7 +20,27 @@ public class DVD extends Item {
     }
 
     @Override
-    public int compare(Object o1, Object o2) {
+    public int compare(DVD o1, DVD o2) {
+        String field = "";
+
+        switch (field.toLowerCase()) {
+            case "id" -> {
+                return o1.id.compareTo(o2.id);
+            }
+
+            case "title" -> {
+                return o1.title.compareTo(o2.title);
+            }
+
+            case "director" -> {
+                return o1.director.compareTo(o2.director);
+            }
+
+            case "duration" -> {
+                return Integer.compare(o1.duration, o2.duration);
+            }
+        }
+
         return 0;
     }
 }

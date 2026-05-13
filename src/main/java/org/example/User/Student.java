@@ -4,12 +4,13 @@ import lombok.*;
 import org.example.Item.Book;
 import org.example.Item.Item;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
 @Setter
 @ToString
-public class Student extends User {
+public class Student extends User implements Comparator<Student> {
     private List<Book> borrowedBooks;
 
     public Student(String id, String name, List<Item> borrowedItems, List<Book> borrowedBooks) {
@@ -18,17 +19,19 @@ public class Student extends User {
     }
 
     @Override
-    public boolean borrowItem(Item borrowedItem) {
-        return false;
-    }
+    public int compare(Student o1, Student o2) {
+        String field = "";
 
-    @Override
-    public boolean returnItem(Item returnedItem) {
-        return false;
-    }
+        switch (field.toLowerCase()) {
+            case "" -> {
+                return o1.author.compareTo(o2.author);
+            }
 
-    @Override
-    public int compare(Object o1, Object o2) {
-        return 0;
+            case "title" -> {
+                return o1.title.compareTo(o2.title);
+            }
+        }
+
+        return 0;;
     }
 }

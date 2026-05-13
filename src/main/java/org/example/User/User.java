@@ -2,8 +2,8 @@ package org.example.User;
 
 import lombok.*;
 import org.example.Item.Item;
-import org.example.Sortable;
 
+import java.util.Comparator;
 import java.util.List;
 
 @AllArgsConstructor
@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public abstract class User implements Sortable {
+public abstract class User implements Comparator {
     protected String id;
     protected String name;
     protected List<Item> borrowedItems;
@@ -22,11 +22,6 @@ public abstract class User implements Sortable {
         this.id = String.format("%04d", nextId++);
         this.name = name;
         this.borrowedItems = borrowedItems;
-    }
-
-    @Override
-    public int compareTo(Object object) {
-        return 0;
     }
 
     public static int nextID = 0;

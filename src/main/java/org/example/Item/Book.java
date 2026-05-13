@@ -19,6 +19,11 @@ public class Book extends Item {
         this.genre = genre;
     }
 
+    @Override
+    public int compare(Object o1, Object o2) {
+        return 0;
+    }
+
     public enum Genre {
         SCIENCE_FICTION,
         ACTION,

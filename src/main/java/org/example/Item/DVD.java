@@ -17,4 +17,8 @@ public class DVD extends Item {
         this.duration = duration;
     }
 
+    @Override
+    public int compare(Object o1, Object o2) {
+        return 0;
+    }
 }

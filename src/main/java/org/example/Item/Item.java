@@ -1,25 +1,21 @@
 package org.example.Item;
 
 import lombok.*;
-import org.example.Sortable;
+
+import java.util.Comparator;
 
 @AllArgsConstructor
 @EqualsAndHashCode
 @Getter
 @Setter
 @ToString
-public abstract class Item implements Sortable {
+public abstract class Item implements Comparator {
     protected String id;
     protected Status status;
 
     public Item(Status status) {
         this.id = String.format("%04d", nextId++);
         this.status = status;
-    }
-
-    @Override
-    public int compareTo(Object object) {
-        return 0;
     }
 
     public static int nextId = 1;

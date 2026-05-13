@@ -27,8 +27,6 @@ public class Magazine extends Item {
 
         @Override
         public int compare(Magazine o1, Magazine o2) {
-            String field = "";
-
             switch (field.toLowerCase()) {
                 case "id" -> {
                     return o1.id.compareTo(o2.id);

@@ -43,8 +43,6 @@ public class Book extends Item {
 
         @Override
         public int compare(Book o1, Book o2) {
-            String field = "";
-
             switch (field.toLowerCase()) {
                 case "id" -> {
                     return o1.id.compareTo(o2.id);

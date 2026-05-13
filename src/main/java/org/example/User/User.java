@@ -5,6 +5,7 @@ import org.example.Item.Book;
 import org.example.Item.Item;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @AllArgsConstructor
@@ -105,7 +106,28 @@ public abstract class User {
                 System.out.println("You do not possess this item.");
             }
         }
-
-
     }
+
+    public static class UserComparator implements Comparator<User> {
+        private String field;
+
+        public UserComparator(String field) {
+            this.field = field;
+        }
+
+        @Override
+        public int compare(User o1, User o2) {
+            switch (field.toLowerCase()) {
+                case "id" -> {
+                    return o1.id.compareTo(o2.id);
+                }
+
+                case "title" -> {
+                    return o1.name.compareTo(o2.name);
+                }
+            }
+
+            return 0;
+        }
+        }
 }

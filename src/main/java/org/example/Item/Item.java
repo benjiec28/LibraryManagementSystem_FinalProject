@@ -2,6 +2,8 @@ package org.example.Item;
 
 import lombok.*;
 
+import java.util.Comparator;
+
 @AllArgsConstructor
 @EqualsAndHashCode
 @Getter
@@ -23,5 +25,29 @@ public abstract class Item {
         BORROWED,
         IN_STORE,
         LOST
+    }
+
+    public static class ItemComparator implements Comparator<Item> {
+        private String field;
+
+        public ItemComparator(String field) {
+            this.field = field;
+        }
+
+        @Override
+        public int compare(Item o1, Item o2) {
+            switch (field.toLowerCase()) {
+                case "id" -> {
+                    return o1.id.compareTo(o2.id);
+                }
+
+                case "title" -> {
+                    return o1.title.compareTo(o2.title);
+                }
+
+            }
+
+            return 0;
+        }
     }
 }

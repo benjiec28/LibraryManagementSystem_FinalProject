@@ -89,19 +89,25 @@ public abstract class User {
      */
     public void returnItem(Item returnedItem) {
         if (this instanceof Student || this instanceof Teacher) {
-            if(returnedItem.getStatus() == Item.Status.BORROWED) {
+            if (borrowedItems.isEmpty()) {
+                System.out.println("You do not have any items.");
+            }
+
+            if (returnedItem.getStatus() == Item.Status.BORROWED) {
                 borrowedItems.remove(returnedItem);
                 returnedItem.setStatus(Item.Status.IN_STORE);
                 System.out.print("Successfully returned.");
             }
+
+            if (returnedItem.getStatus() == Item.Status.LOST) {
+                System.out.print("This item is unavailable.");
+            }
+
+            if (returnedItem.getStatus() == Item.Status.IN_STORE) {
+                System.out.println("You do not possess this item.");
+            }
         }
 
-        if(returnedItem.getStatus() == Item.Status.LOST) {
-            System.out.print("This item is unavailable.");
-        }
 
-        if (returnedItem.getStatus() == Item.Status.IN_STORE) {
-            System.out.println("You do not possess this item.");
-        }
     }
 }

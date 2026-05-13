@@ -35,7 +35,6 @@ public abstract class User {
     /**
      * borrows an item, adds it to the students list of borrowed books and changes status to BORROWED.
      * @param borrowedItem the borrowed item.
-     * @return true if the item was successfully borrowed; false if it was not.
      */
     public void borrowItem(Item borrowedItem) {
         if (this instanceof Student && !(borrowedItem instanceof Book)) {
@@ -85,7 +84,6 @@ public abstract class User {
     /**
      * returns an item, removes it to the students list of borrowed books and changes status to IN_STORE.
      * @param returnedItem the returned item.
-     * @return true if the item was successfully returned; false if it was not.
      */
     public void returnItem(Item returnedItem) {
         if (this instanceof Student || this instanceof Teacher) {

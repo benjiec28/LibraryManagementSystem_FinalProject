@@ -9,14 +9,12 @@ import java.util.Comparator;
 @ToString
 public class Book extends Item implements Comparator<Book> {
     private String ISBN;
-    private String title;
     private String author;
     private Genre genre;
 
     public Book(String id, Status status, String ISBN, String title, String author, Genre genre) {
-        super(id, status);
+        super(id, title, status);
         this.ISBN = ISBN;
-        this.title = title;
         this.author = author;
         this.genre = genre;
     }

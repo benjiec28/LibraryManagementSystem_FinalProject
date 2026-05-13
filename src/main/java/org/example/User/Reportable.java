@@ -7,7 +7,7 @@ import java.util.List;
 public interface Reportable {
 
     /**
-     * Generates a report.
+     * Generates a report for all items.
      */
     abstract void generateReport(List<Item> items);
 }

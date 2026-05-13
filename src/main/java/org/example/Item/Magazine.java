@@ -8,14 +8,12 @@ import java.util.Comparator;
 @Setter
 @ToString
 public class Magazine extends Item implements Comparator<Magazine> {
-    private String title;
     private String issueNumber;
     private String publisher;
 
 
     public Magazine(String id, Status status, String title, String issueNumber, String publisher) {
-        super(id, status);
-        this.title = title;
+        super(id, title, status);
         this.issueNumber = issueNumber;
         this.publisher = publisher;
     }

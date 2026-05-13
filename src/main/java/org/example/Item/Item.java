@@ -9,6 +9,7 @@ import lombok.*;
 @ToString
 public abstract class Item {
     protected String id;
+    protected String title;
     protected Status status;
 
     public Item(Status status) {

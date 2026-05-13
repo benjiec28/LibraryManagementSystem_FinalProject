@@ -13,8 +13,8 @@ import java.util.List;
 public class Student extends User implements Comparator<Student> {
     private List<Book> borrowedBooks;
 
-    public Student(String id, String name, List<Item> borrowedItems, List<Book> borrowedBooks) {
-        super(id, name, borrowedItems);
+    public Student(String id, String name, List<Item> borrowedItems, Gender gender, List<Book> borrowedBooks) {
+        super(id, name, borrowedItems, gender);
         this.borrowedBooks = borrowedBooks;
     }
 
@@ -23,15 +23,15 @@ public class Student extends User implements Comparator<Student> {
         String field = "";
 
         switch (field.toLowerCase()) {
-            case "" -> {
-                return o1.author.compareTo(o2.author);
+            case "id" -> {
+                return o1.id.compareTo(o2.id);
             }
 
-            case "title" -> {
-                return o1.title.compareTo(o2.title);
+            case "name" -> {
+                return o1.name.compareTo(o2.name);
             }
         }
 
-        return 0;;
+        return 0;
     }
 }

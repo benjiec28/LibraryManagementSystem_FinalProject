@@ -9,6 +9,7 @@ public class Validation {
      */
     public boolean isIDValid(String id) {
         return id.matches("\\d{7}");
+
     }
 
     /**
@@ -18,5 +19,9 @@ public class Validation {
      */
     public boolean isISBNValid(String isbn) {
         return isbn.matches("\\d{13}");
+    }
+
+    public boolean isNameValid(String name) {
+
     }
 }

@@ -7,7 +7,7 @@ import java.util.Comparator;
 @Getter
 @Setter
 @ToString
-public class DVD extends Item implements Comparator<DVD> {
+public class DVD extends Item {
     private String director;
     private int duration;
 
@@ -18,28 +18,34 @@ public class DVD extends Item implements Comparator<DVD> {
         this.duration = duration;
     }
 
-    @Override
-    public int compare(DVD o1, DVD o2) {
-        String field = "";
+    public static class DVDComparator implements Comparator<DVD> {
+        private String field;
 
-        switch (field.toLowerCase()) {
-            case "id" -> {
-                return o1.id.compareTo(o2.id);
-            }
-
-            case "title" -> {
-                return o1.title.compareTo(o2.title);
-            }
-
-            case "director" -> {
-                return o1.director.compareTo(o2.director);
-            }
-
-            case "duration" -> {
-                return Integer.compare(o1.duration, o2.duration);
-            }
+        public DVDComparator(String field) {
+            this.field = field;
         }
 
-        return 0;
+        @Override
+        public int compare(DVD o1, DVD o2) {
+            switch (field.toLowerCase()) {
+                case "id" -> {
+                    return o1.id.compareTo(o2.id);
+                }
+
+                case "title" -> {
+                    return o1.title.compareTo(o2.title);
+                }
+
+                case "director" -> {
+                    return o1.director.compareTo(o2.director);
+                }
+
+                case "duration" -> {
+                    return Integer.compare(o1.duration, o2.duration);
+                }
+            }
+
+            return 0;
+        }
     }
 }

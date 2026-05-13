@@ -7,7 +7,7 @@ public class Validation {
      * @param id the id
      * @return true if the id is valid; false if it's not.
      */
-    public boolean isIDValid(String id) {
+    public static boolean isIDValid(String id) {
         return id.matches("\\d{7}");
 
     }
@@ -17,11 +17,7 @@ public class Validation {
      * @param isbn the isbn.
      * @return true if the isbn is valid; false if it's not.
      */
-    public boolean isISBNValid(String isbn) {
+    public static boolean isISBNValid(String isbn) {
         return isbn.matches("\\d{13}");
-    }
-
-    public boolean isNameValid(String name) {
-
     }
 }

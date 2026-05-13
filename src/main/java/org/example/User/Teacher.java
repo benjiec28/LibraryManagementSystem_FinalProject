@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class Teacher extends User implements Comparator<Teacher> {
+public class Teacher extends User {
     private List<Item> borrowedItems;
 
     public Teacher(String id, String name, List<Item> borrowedItems, Gender gender, List<Item> borrowedItems1) {
@@ -17,20 +17,26 @@ public class Teacher extends User implements Comparator<Teacher> {
         this.borrowedItems = borrowedItems1;
     }
 
-    @Override
-    public int compare(Teacher o1, Teacher o2) {
-        String field = "";
+    public static class TeacherComparator implements Comparator<Teacher> {
+        private String field;
 
-        switch (field.toLowerCase()) {
-            case "id" -> {
-                return o1.id.compareTo(o2.id);
-            }
-
-            case "name" -> {
-                return o1.name.compareTo(o2.name);
-            }
+        public TeacherComparator(String field) {
+            this.field = field;
         }
 
-        return 0;
+        @Override
+        public int compare(Teacher o1, Teacher o2) {
+            switch (field.toLowerCase()) {
+                case "id" -> {
+                    return o1.id.compareTo(o2.id);
+                }
+
+                case "name" -> {
+                    return o1.name.compareTo(o2.name);
+                }
+            }
+
+            return 0;
+        }
     }
 }

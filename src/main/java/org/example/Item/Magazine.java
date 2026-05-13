@@ -7,7 +7,7 @@ import java.util.Comparator;
 @Getter
 @Setter
 @ToString
-public class Magazine extends Item implements Comparator<Magazine> {
+public class Magazine extends Item {
     private String issueNumber;
     private String publisher;
 
@@ -18,28 +18,36 @@ public class Magazine extends Item implements Comparator<Magazine> {
         this.publisher = publisher;
     }
 
-    @Override
-    public int compare(Magazine o1, Magazine o2) {
-        String field = "";
+    public static class MagazineComparator implements Comparator<Magazine> {
+        private String field;
 
-        switch (field.toLowerCase()) {
-            case "id" -> {
-                return o1.id.compareTo(o2.id);
-            }
-
-            case "title" -> {
-                return o1.title.compareTo(o2.title);
-            }
-
-            case "issue_number" -> {
-                return o1.issueNumber.compareTo(o2.issueNumber);
-            }
-
-            case "publisher" -> {
-                return o1.publisher.compareTo(o2.publisher);
-            }
+        public MagazineComparator(String field) {
+            this.field = field;
         }
 
-        return 0;
+        @Override
+        public int compare(Magazine o1, Magazine o2) {
+            String field = "";
+
+            switch (field.toLowerCase()) {
+                case "id" -> {
+                    return o1.id.compareTo(o2.id);
+                }
+
+                case "title" -> {
+                    return o1.title.compareTo(o2.title);
+                }
+
+                case "issue_number" -> {
+                    return o1.issueNumber.compareTo(o2.issueNumber);
+                }
+
+                case "publisher" -> {
+                    return o1.publisher.compareTo(o2.publisher);
+                }
+            }
+
+            return 0;
+        }
     }
 }

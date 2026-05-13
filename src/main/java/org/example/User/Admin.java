@@ -3,6 +3,7 @@ package org.example.User;
 import lombok.*;
 import org.example.Item.Item;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -32,6 +33,29 @@ public class Admin extends User implements Reportable {
                 .filter(item -> item.getStatus() == Item.Status.IN_STORE)
                 .forEach(item -> System.out.println(item.getTitle() + " | " + item.getId()));
 
+    }
+
+    public static class AdminComparator implements Comparator<Admin> {
+        private String field;
+
+        public AdminComparator(String field) {
+            this.field = field;
+        }
+
+        @Override
+        public int compare(Admin o1, Admin o2) {
+            switch (field.toLowerCase()) {
+                case "id" -> {
+                    return o1.id.compareTo(o2.id);
+                }
+
+                case "name" -> {
+                    return o1.name.compareTo(o2.name);
+                }
+            }
+
+            return 0;
+        }
     }
 
 }

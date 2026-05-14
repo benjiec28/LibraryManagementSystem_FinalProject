@@ -1,6 +1,7 @@
 package org.example.User;
 
 import lombok.*;
+import org.example.Constants;
 import org.example.Item.Book;
 import org.example.Item.Item;
 
@@ -38,7 +39,7 @@ public abstract class User {
      */
     public void borrowItem(Item borrowedItem) {
         if (this instanceof Student && !(borrowedItem instanceof Book)) {
-            int maxBooks = 5;
+            int maxBooks = Constants.MAX_BOOKS_STUDENT;
 
             if (borrowedItem.getStatus() == Item.Status.BORROWED) {
                 System.out.print("This item is already borrowed.");
@@ -59,7 +60,7 @@ public abstract class User {
             }
 
         } else if (this instanceof Teacher) {
-            int maxItems = 10;
+            int maxItems = Constants.MAX_ITEMS_TEACHER;
 
             if (borrowedItem.getStatus() == Item.Status.BORROWED) {
                 System.out.print("This item is already borrowed.");

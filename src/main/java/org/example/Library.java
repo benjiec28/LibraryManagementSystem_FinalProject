@@ -27,7 +27,6 @@ public class Library {
 
     /**
      * Finds items by title or author through recursive search.
-     *
      * @param query the query (title or author).
      * @return the items with the query.
      */
@@ -37,11 +36,10 @@ public class Library {
 
     /**
      * A recursive helper method that goes through the items.
-     *
-     * @param query   the query (title or author).
-     * @param index   the index.
+     * @param query the query (title or author).
+     * @param index the index.
      * @param results the results.
-     * @param seen    a set of items with unique isbn.
+     * @param seen a set of items with unique isbn.
      * @return a list of unique items with the query.
      */
     private List<Item> recursiveHelper(String query, int index, List<Item> results, Set<String> seen) {
@@ -74,7 +72,6 @@ public class Library {
 
     /**
      * Finds items by title or author through stream search.
-     *
      * @param query the query (title or author).
      * @return the items with the query.
      */
@@ -105,7 +102,6 @@ public class Library {
 
     /**
      * Adds an item to the library.
-     *
      * @param item the item.
      * @return returns true if the item was successfully added ; false if not.
      */
@@ -134,7 +130,6 @@ public class Library {
 
     /**
      * Removes an item to the library.
-     *
      * @param item the item.
      * @return returns true if the item was successfully removed ; false if not.
      */

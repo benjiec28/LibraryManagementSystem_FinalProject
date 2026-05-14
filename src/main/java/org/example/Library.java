@@ -1,10 +1,13 @@
 package org.example;
 
 import lombok.*;
+import org.example.Item.Book;
+import org.example.Item.DVD;
 import org.example.Item.Item;
+import org.example.Item.Magazine;
 import org.example.User.User;
 
-import java.util.List;
+import java.util.*;
 
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -16,43 +19,77 @@ public class Library {
     private List<User> users;
 
     /**
-     * Finds items by author through recursive search.
-     * @param author the author.
-     * @return the items with the author.
+     * Finds items by title or author through recursive search.
+     * @param query the query (title or author).
+     * @return the items with the query.
      */
-    public List<Item> recursiveSearchByAuthor(String author) {
-        return ;
+    public List<Item> recursiveSearch(String query) {
+        return recursiveHelper(query.toLowerCase(), 0, new ArrayList<>(), new HashSet<>());
+    }
+
+    /**
+     * A recursive helper method that goes through the items.
+     * @param query the query (title or author).
+     * @param index the index.
+     * @param results the results.
+     * @param seen a set of items with unique isbn.
+     * @return a list of unique items with the query.
+     */
+    private List<Item> recursiveHelper (String query, int index, List<Item> results, Set<String> seen) {
+        if (index >= items.size()) {
+            return results;
+        }
+
+        Item current = items.get(index);
+         boolean isMatch = current.getTitle().toLowerCase().contains(query);
+
+         if (current instanceof Book) {
+             isMatch = isMatch || ((Book) current).getAuthor().toLowerCase().contains(query);
+         } else if (current instanceof DVD) {
+             isMatch = isMatch || ((DVD) current).getDirector().toLowerCase().contains(query);
+         } else if (current instanceof Magazine) {
+             isMatch = isMatch || ((Magazine) current).getPublisher().toLowerCase().contains(query);
+         }
+
+         if (isMatch) {
+             String key = (current instanceof Book) ? ((Book) current).getISBN() : current.getTitle();
+
+             if (seen.add(key)) {
+                 results.add(current);
+             }
+         }
+
+         return recursiveHelper(query, index + 1, results, seen);
 
     }
 
     /**
-     * Finds items by title through recursive search.
-     * @param title the title.
-     * @return the items with the title.
+     * Finds items by title or author through stream search.
+     * @param query the query (title or author).
+     * @return the items with the query.
      */
-    public List<Item> recursiveSearchByTitle(String title) {
-        return ;
-    }
+    public List<Item> streamSearch(String query) {
+        String queryLC = query.toLowerCase();
+        Set<String> uniqueItem = new HashSet<>();
 
-    /**
-     * Finds items by author through stream search.
-     * @param author the author.
-     * @return the items with the author.
-     */
-    public List<Item> streamSearchByAuthor(String author) {
         return items.stream()
-                .filter(item -> );
-    }
+                .filter(item -> {
+                    boolean matches = item.getTitle().toLowerCase().contains(queryLC);
 
-    /**
-     * Finds items by title through stream search.
-     * @param title the title.
-     * @return the items with the title.
-     */
-    public List<Item> streamSearchByTitle(String title) {
-        return items.stream()
-                .filter(item -> item.getTitle().equalsIgnoreCase(title))
-                .distinct()
+                    if (item instanceof Book) {
+                        matches = matches || ((Book) item).getAuthor().toLowerCase().contains(queryLC);
+                    } else if (item instanceof DVD) {
+                        matches = matches || ((DVD) item).getDirector().toLowerCase().contains(queryLC);
+                    } else if (item instanceof Magazine) {
+                        matches = matches || ((Magazine) item).getPublisher().toLowerCase().contains(queryLC);
+                    }
+
+                    return matches;
+                })
+                .filter(item -> {
+                    String key = (item instanceof Book) ? ((Book) item).getISBN() : item.getTitle();
+                    return uniqueItem.add(key);
+                })
                 .toList();
     }
 

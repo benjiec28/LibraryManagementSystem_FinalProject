@@ -10,11 +10,9 @@ import java.util.List;
 @Setter
 @ToString
 public class Teacher extends User {
-    private List<Item> borrowedItems;
 
-    public Teacher(String id, String name, List<Item> borrowedItems, Gender gender, List<Item> borrowedItems1) {
+    public Teacher(String id, String name, List<Item> borrowedItems, Gender gender) {
         super(id, name, borrowedItems, gender);
-        this.borrowedItems = borrowedItems1;
     }
 
     public static class TeacherComparator implements Comparator<Teacher> {

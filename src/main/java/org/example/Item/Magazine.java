@@ -8,11 +8,11 @@ import java.util.Comparator;
 @Setter
 @ToString
 public class Magazine extends Item {
-    private String issueNumber;
+    private int issueNumber;
     private String publisher;
 
 
-    public Magazine(String id, Status status, String title, String issueNumber, String publisher) {
+    public Magazine(String id, Status status, String title, int issueNumber, String publisher) {
         super(id, title, status);
         this.issueNumber = issueNumber;
         this.publisher = publisher;
@@ -37,7 +37,7 @@ public class Magazine extends Item {
                 }
 
                 case "issue_number" -> {
-                    return o1.issueNumber.compareTo(o2.issueNumber);
+                    return Integer.compare(o1.issueNumber, o2.issueNumber);
                 }
 
                 case "publisher" -> {

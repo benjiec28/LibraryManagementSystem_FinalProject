@@ -11,11 +11,9 @@ import java.util.List;
 @Setter
 @ToString
 public class Student extends User {
-    private List<Book> borrowedBooks;
 
-    public Student(String id, String name, List<Item> borrowedItems, Gender gender, List<Book> borrowedBooks) {
+    public Student(String id, String name, List<Item> borrowedItems, Gender gender) {
         super(id, name, borrowedItems, gender);
-        this.borrowedBooks = borrowedBooks;
     }
 
     public static class StudentComparator implements Comparator<Student> {

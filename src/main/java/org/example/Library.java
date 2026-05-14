@@ -5,8 +5,13 @@ import org.example.Item.Book;
 import org.example.Item.DVD;
 import org.example.Item.Item;
 import org.example.Item.Magazine;
+import org.example.User.Admin;
+import org.example.User.Student;
+import org.example.User.Teacher;
 import org.example.User.User;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 @AllArgsConstructor
@@ -16,10 +21,11 @@ import java.util.*;
 @ToString
 public class Library {
     private List<Item> items;
-    private List<User> users;
+    private Map<String, User> users;
 
     /**
      * Finds items by title or author through recursive search.
+     *
      * @param query the query (title or author).
      * @return the items with the query.
      */
@@ -29,42 +35,44 @@ public class Library {
 
     /**
      * A recursive helper method that goes through the items.
-     * @param query the query (title or author).
-     * @param index the index.
+     *
+     * @param query   the query (title or author).
+     * @param index   the index.
      * @param results the results.
-     * @param seen a set of items with unique isbn.
+     * @param seen    a set of items with unique isbn.
      * @return a list of unique items with the query.
      */
-    private List<Item> recursiveHelper (String query, int index, List<Item> results, Set<String> seen) {
+    private List<Item> recursiveHelper(String query, int index, List<Item> results, Set<String> seen) {
         if (index >= items.size()) {
             return results;
         }
 
         Item current = items.get(index);
-         boolean isMatch = current.getTitle().toLowerCase().contains(query);
+        boolean isMatch = current.getTitle().toLowerCase().contains(query);
 
-         if (current instanceof Book) {
-             isMatch = isMatch || ((Book) current).getAuthor().toLowerCase().contains(query);
-         } else if (current instanceof DVD) {
-             isMatch = isMatch || ((DVD) current).getDirector().toLowerCase().contains(query);
-         } else if (current instanceof Magazine) {
-             isMatch = isMatch || ((Magazine) current).getPublisher().toLowerCase().contains(query);
-         }
+        if (current instanceof Book) {
+            isMatch = isMatch || ((Book) current).getAuthor().toLowerCase().contains(query);
+        } else if (current instanceof DVD) {
+            isMatch = isMatch || ((DVD) current).getDirector().toLowerCase().contains(query);
+        } else if (current instanceof Magazine) {
+            isMatch = isMatch || ((Magazine) current).getPublisher().toLowerCase().contains(query);
+        }
 
-         if (isMatch) {
-             String key = (current instanceof Book) ? ((Book) current).getISBN() : current.getTitle();
+        if (isMatch) {
+            String key = (current instanceof Book) ? ((Book) current).getISBN() : current.getTitle();
 
-             if (seen.add(key)) {
-                 results.add(current);
-             }
-         }
+            if (seen.add(key)) {
+                results.add(current);
+            }
+        }
 
-         return recursiveHelper(query, index + 1, results, seen);
+        return recursiveHelper(query, index + 1, results, seen);
 
     }
 
     /**
      * Finds items by title or author through stream search.
+     *
      * @param query the query (title or author).
      * @return the items with the query.
      */
@@ -95,6 +103,7 @@ public class Library {
 
     /**
      * Adds an item to the library.
+     *
      * @param item the item.
      * @return returns true if the item was successfully added ; false if not.
      */
@@ -123,6 +132,7 @@ public class Library {
 
     /**
      * Removes an item to the library.
+     *
      * @param item the item.
      * @return returns true if the item was successfully removed ; false if not.
      */
@@ -140,7 +150,119 @@ public class Library {
      * Loads the file data.
      */
     public void loadFileData() {
-        return;
+        items = new ArrayList<>();
+        users = new HashMap<>();
+
+        try {
+            Scanner itemScanner = new Scanner(new File(Constants.CSV_FILE_ITEMS));
+            itemScanner.nextLine();
+
+            while (itemScanner.hasNext()) {
+                String line = itemScanner.nextLine();
+                String[] data = line.split((","));
+
+                String id = data[0];
+                String title = data[1];
+                String type = data[2];
+                Item.Status status = Item.Status.valueOf(data[3]);
+
+                Item item = null;
+
+                switch (type.toLowerCase()) {
+                    case "book" -> {
+                        String isbn = data[4];
+                        String author = data[5];
+                        Book.Genre genre = Book.Genre.valueOf(data[6]);
+
+                        item = new Book(id, status, isbn, title, author, genre);
+                    }
+
+                    case "dvd" -> {
+                        String director = data[4];
+                        int duration = Integer.parseInt(data[5]);
+
+                        item = new DVD(id, status, title, director, duration);
+                    }
+
+                    case "magazine" -> {
+                        int issueNumber = Integer.parseInt(data[4]);
+                        String publisher = data[5];
+
+                        item = new Magazine(id, status, title, issueNumber, publisher);
+                    }
+
+                    default -> System.out.println("Invalid type.");
+                }
+
+                if (item != null) {
+                    item.setId(id);
+                    items.add(item);
+                }
+            }
+
+            itemScanner.close();
+
+            Scanner userScanner = new Scanner(new File(Constants.CSV_FILE_USERS));
+            userScanner.nextLine();
+
+            while (userScanner.hasNext()) {
+                String line = userScanner.nextLine();
+                String[] element = line.split(",");
+
+                String id = element[0];
+                String name = element[1];
+                String rank = element[2];
+
+                List<Item> borrowedItem = new ArrayList<>();
+
+                if (!element[3].isBlank()) {
+                    String[] borrowedIDs = element[3].split(",");
+
+                    for (String borrowedID : borrowedIDs) {
+                        for (Item item : items) {
+                            if (item.getId().equals(borrowedID)) {
+                                borrowedItem.add(item);
+                            }
+                        }
+                    }
+                }
+
+                User.Gender gender = User.Gender.valueOf(element[4]);
+                User user = null;
+
+                switch (rank.toLowerCase()) {
+                    case "student" -> {
+                        user = new Student(id, name, borrowedItem, gender);
+                    }
+
+                    case "teacher" -> {
+                        user = new Teacher(id, name, borrowedItem, gender);
+                    }
+
+                    case "admin" -> {
+                        user = new Admin(id, name, borrowedItem, gender);
+                    }
+
+                    default -> {
+                        System.out.println("Invalid rank.");
+                    }
+                }
+
+                if (user != null) {
+                    user.setId(id);
+                    users.put(id, user);
+                }
+            }
+
+            userScanner.close();
+
+            System.out.println("File data successfully loaded.");
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found:" + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Loading data error:" + e.getMessage());
+        }
     }
 
     /**

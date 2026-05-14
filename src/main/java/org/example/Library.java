@@ -273,16 +273,16 @@ public class Library {
     public void backupFileData() {
         try {
             FileWriter itemWriter = new FileWriter(Constants.CSV_FILE_ITEMS);
-            itemWriter.write("ID | TYPE | TITLE | STATUS\n");
+            itemWriter.write("ID , TYPE , TITLE , STATUS\n");
 
             for (Item item : items) {
                 String type = item.getClass().getSimpleName();
-                itemWriter.write(item.getId() + " | " + type + " | " + item.getTitle() + " | " + item.getStatus() + "\n");
+                itemWriter.write(item.getId() + " , " + type + " , " + item.getTitle() + " , " + item.getStatus() + "\n");
             }
             itemWriter.close();
 
             FileWriter userWriter = new FileWriter(Constants.CSV_FILE_USERS);
-            userWriter.write("ID | NAME | RANK | BORROWED ITEMS | GENDER\n");
+            userWriter.write("ID , NAME , RANK , BORROWED ITEMS , GENDER\n");
 
             for (User user : users.values()) {
                 String rank = user.getClass().getSimpleName();
@@ -296,7 +296,7 @@ public class Library {
                     borrowed.setLength(borrowed.length() - 1);
                 }
 
-                userWriter.write(user.getId() + " | " + user.getName() + " | " + borrowed + " | " + user.getGender() + "\n");
+                userWriter.write(user.getId() + " , " + user.getName() + " , " + borrowed + " , " + user.getGender() + "\n");
             }
 
             userWriter.close();

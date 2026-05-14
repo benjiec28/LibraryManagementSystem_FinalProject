@@ -4,7 +4,6 @@ import lombok.*;
 import org.example.Item.Book;
 import org.example.Item.Item;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -41,11 +40,11 @@ public abstract class User {
         if (this instanceof Student && !(borrowedItem instanceof Book)) {
             int maxBooks = 5;
 
-            if(borrowedItem.getStatus() == Item.Status.BORROWED) {
+            if (borrowedItem.getStatus() == Item.Status.BORROWED) {
                 System.out.print("This item is already borrowed.");
             }
 
-            if(borrowedItem.getStatus() == Item.Status.LOST) {
+            if (borrowedItem.getStatus() == Item.Status.LOST) {
                 System.out.print("This item is unavailable.");
             }
 
@@ -62,11 +61,11 @@ public abstract class User {
         } else if (this instanceof Teacher) {
             int maxItems = 10;
 
-            if(borrowedItem.getStatus() == Item.Status.BORROWED) {
+            if (borrowedItem.getStatus() == Item.Status.BORROWED) {
                 System.out.print("This item is already borrowed.");
             }
 
-            if(borrowedItem.getStatus() == Item.Status.LOST) {
+            if (borrowedItem.getStatus() == Item.Status.LOST) {
                 System.out.print("This item is unavailable.");
             }
 
@@ -129,5 +128,5 @@ public abstract class User {
 
             return 0;
         }
-        }
+    }
 }

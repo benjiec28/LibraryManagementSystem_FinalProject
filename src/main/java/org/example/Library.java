@@ -104,6 +104,18 @@ public class Library {
             return false;
         }
 
+        if (!Validation.isIDValid(item.getId())) {
+            System.out.println("ID is not valid.");
+            return false;
+        }
+
+        if (item instanceof Book) {
+            if (!Validation.isISBNValid(((Book) item).getISBN())) {
+                System.out.println("ISBN is not valid.");
+                return false;
+            }
+        }
+
         items.add(item);
 
         return true;
@@ -121,7 +133,6 @@ public class Library {
         }
 
         System.out.println("Item is not in the library.");
-
         return false;
     }
 

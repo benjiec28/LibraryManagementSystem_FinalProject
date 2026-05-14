@@ -12,6 +12,8 @@ import org.example.User.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 @AllArgsConstructor
@@ -261,7 +263,7 @@ public class Library {
         } catch (FileNotFoundException e) {
             System.out.println("File not found:" + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Loading data error:" + e.getMessage());
+            System.out.println("Loading data error: " + e.getMessage());
         }
     }
 
@@ -269,6 +271,40 @@ public class Library {
      * Backs up the file data.
      */
     public void backupFileData() {
-        return;
+        try {
+            FileWriter itemWriter = new FileWriter(Constants.CSV_FILE_ITEMS);
+            itemWriter.write("ID | TYPE | TITLE | STATUS\n");
+
+            for (Item item : items) {
+                String type = item.getClass().getSimpleName();
+                itemWriter.write(item.getId() + " | " + type + " | " + item.getTitle() + " | " + item.getStatus() + "\n");
+            }
+            itemWriter.close();
+
+            FileWriter userWriter = new FileWriter(Constants.CSV_FILE_USERS);
+            userWriter.write("ID | NAME | RANK | BORROWED ITEMS | GENDER\n");
+
+            for (User user : users.values()) {
+                String rank = user.getClass().getSimpleName();
+                StringBuilder borrowed = new StringBuilder();
+
+                for (Item item : user.getBorrowedItems()) {
+                    borrowed.append(item.getId()).append(";");
+                }
+
+                if (!borrowed.isEmpty()) {
+                    borrowed.setLength(borrowed.length() - 1);
+                }
+
+                userWriter.write(user.getId() + " | " + user.getName() + " | " + borrowed + " | " + user.getGender() + "\n");
+            }
+
+            userWriter.close();
+
+            System.out.println("File data successfully backed up.");
+
+        } catch (IOException e) {
+            System.out.println("Backup data error: " + e.getMessage());
+        }
     }
 }

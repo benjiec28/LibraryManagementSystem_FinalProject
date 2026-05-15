@@ -8,8 +8,7 @@ public class Validation {
      * @return true if the id is valid; false if it's not.
      */
     public static boolean isIDValid(String id) {
-        return id.matches("\\d{7}");
-
+        return id != null && id.trim().matches("\\d{7}");
     }
 
     /**
@@ -19,5 +18,33 @@ public class Validation {
      */
     public static boolean isISBNValid(String isbn) {
         return isbn.matches("\\d{13}");
+    }
+
+    /**
+     * Checks if issue number is valid.
+     * @param issueNumber the issue number.
+     * @return true if the issue number is valid ; false if not.
+     */
+    public static boolean isIssueNumberValid(int issueNumber) {
+        return issueNumber > 0;
+    }
+
+    /**
+     * Checks if name is valid.
+     * @param name the name
+     * @return true if the name is valid ; false if not.
+     */
+    public static boolean isNameValid(String name) {
+        if (name == null) {
+            return false;
+        }
+
+        for (int i = 0; i < name.length(); i++) {
+            if (Character.isLetter(i)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

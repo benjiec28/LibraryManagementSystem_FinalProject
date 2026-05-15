@@ -1,0 +1,12 @@
+This project consists of a Library Management System that simulates one of a real life version.It consists of a class
+hierarchy with "Library" being the central class. Extended to it are 2 abstract super classes called "Item" and "User".
+For "Item", it possesses 3 subclasses, which are "Book", "Magazine" and "DVD". As for "User", it also has 3 subclasses
+being "Student", "Teacher" and "Admin". This system also has many features such as the ability to compare different
+objects using various fields, whether it's the id, the title, the author, etc., to search for various items using either
+the title or the author and even load or backup data into file specifically made for both items and users (Items.csv
+and Users.csv) In addition to such, it possesses its own ExceptionHandler that is able to detect and deal with various
+specific exceptions. To make sure all the code works, there's a testing class for Library, User and Validation that
+could prove that the code written is indeed functional. Out of all the challenges faced while writing this code, the
+one that challenged me the most is testing since I had to relearn how to do void testing, a concept that still seemed
+abstract to me. In brief, this final project allowed us to utilise all concepts learned in programming during the course
+of the last two semesters.

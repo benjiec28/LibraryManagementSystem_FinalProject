@@ -1,0 +1,38 @@
+BORROWING ITEM :
+1. Search the item.
+2. Verify if you have not surpassed the max borrowed books permitted.
+3. Borrow the item if it's available.
+4. Set status as BORROWED.
+5. Close program.
+
+RETURNING ITEM :
+1. Check item in your list of borrowed items.
+2. Return the item.
+3. Set Status as IN_STORE.
+4. Close program.
+
+ADDING ITEM TO LIBRARY :
+1. Insert necessary fields for the item.
+2. Add item to library.
+3. Close Program.
+
+REMOVING ITEM TO LIBRARY :
+1. Search for item.
+2. Remove item.
+3. Make sure all fields are wiped.
+4. Close Program.
+
+SORTING :
+1. Select which field you wish to sort by.
+2. Sort the items related to the field.
+
+SETTING STATUS ON ITEMS :
+1. Search the item.
+2. Set it to desired status.
+3. Close program.
+
+GENERATING REPORT :
+1. Go to Admin controls.
+2. Generate Report of all items.
+3. Verify if all items are in order/correct.
+4. Close program.

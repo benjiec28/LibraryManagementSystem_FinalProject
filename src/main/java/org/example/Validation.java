@@ -40,7 +40,7 @@ public class Validation {
         }
 
         for (int i = 0; i < name.length(); i++) {
-            if (Character.isLetter(i)) {
+            if (Character.isLetter(name.charAt(i))) {
                 return true;
             }
         }

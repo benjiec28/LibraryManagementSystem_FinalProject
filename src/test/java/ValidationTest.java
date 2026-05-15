@@ -26,9 +26,9 @@ public class ValidationTest {
     }
 
     @Test
-    @DisplayName("{978-0-306-40615-7} -> true")
+    @DisplayName("{978030640615-7} -> true")
     void isISBNValid1() {
-        String ISBN = "978-0-306-40615-7";
+        String ISBN = "9780306406157";
         boolean actual = Validation.isISBNValid(ISBN);
         boolean expected = true;
 

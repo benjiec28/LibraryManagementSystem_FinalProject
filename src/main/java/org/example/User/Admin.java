@@ -21,17 +21,17 @@ public class Admin extends User implements Reportable {
         System.out.println("== Borrowed Items ==\n");
         items.stream()
                 .filter(item -> item.getStatus() == Item.Status.BORROWED)
-                .forEach(item -> System.out.println(item.getTitle() + " | " + item.getId()));
+                .forEach(item -> System.out.println(item.getTitle() + "," + item.getId()));
 
         System.out.println("== Lost Items ==\n");
         items.stream()
                 .filter(item -> item.getStatus() == Item.Status.LOST)
-                .forEach(item -> System.out.println(item.getTitle() + " | " + item.getId()));
+                .forEach(item -> System.out.println(item.getTitle() + "," + item.getId()));
 
         System.out.println("== In Store Items ==\n");
         items.stream()
                 .filter(item -> item.getStatus() == Item.Status.IN_STORE)
-                .forEach(item -> System.out.println(item.getTitle() + " | " + item.getId()));
+                .forEach(item -> System.out.println(item.getTitle() + "," + item.getId()));
 
     }
 

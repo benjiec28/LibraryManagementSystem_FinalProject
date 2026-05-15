@@ -18,10 +18,10 @@ public class LibraryTest {
     void recursiveSearch() {
         List<Item> items = new ArrayList<>();
 
-        items.add(new Book("B1", Item.Status.IN_STORE, "9780134685991", "Java", "Carl", Book.Genre.SCIENCE_FICTION));
-        items.add(new Book("B2", Item.Status.IN_STORE, "9780134685991", "duplicate", "Rawr", Book.Genre.SCIENCE_FICTION));
-        items.add(new DVD("D1", Item.Status.IN_STORE, "Invincible", "Nolan", 148));
-        items.add(new Magazine("M1", Item.Status.IN_STORE, "Robotics", 202, "John"));
+        items.add(new Book("0000001", Item.Status.IN_STORE, "9780134685991", "Java", "Carl", Book.Genre.SCIENCE_FICTION));
+        items.add(new Book("0000002", Item.Status.IN_STORE, "9780134685991", "duplicate", "Rawr", Book.Genre.SCIENCE_FICTION));
+        items.add(new DVD("0000003", Item.Status.IN_STORE, "Invincible", "Nolan", 148));
+        items.add(new Magazine("0000004", Item.Status.IN_STORE, "Robotics", 202, "John"));
 
         Library library = new Library(items, new HashMap<>());
 
@@ -41,10 +41,10 @@ public class LibraryTest {
     void streamSearch() {
         List<Item> items = new ArrayList<>();
 
-        items.add(new Book("B1", Item.Status.IN_STORE, "9780596009205", "Java", "Michael", Book.Genre.SCIENCE_FICTION));
-        items.add(new DVD("D1", Item.Status.IN_STORE, "Interstellar", "Nolan", 169));
-        items.add(new DVD("D2", Item.Status.IN_STORE, "Interstellar", "Mark", 169));
-        items.add(new Magazine("M1", Item.Status.IN_STORE, "Tech News", 50, "Publisher X"));
+        items.add(new Book("0000001", Item.Status.IN_STORE, "9780596009205", "Java", "Michael", Book.Genre.SCIENCE_FICTION));
+        items.add(new DVD("0000002", Item.Status.IN_STORE, "Interstellar", "Nolan", 169));
+        items.add(new DVD("0000003", Item.Status.IN_STORE, "Interstellar", "Mark", 169));
+        items.add(new Magazine("0000004", Item.Status.IN_STORE, "Tech News", 50, "Publisher X"));
 
         Library library = new Library(items, new HashMap<>());
 
@@ -70,13 +70,13 @@ public class LibraryTest {
 
         Book invalidIsbnBook = new Book("0000002", Item.Status.IN_STORE, "123", "Volleyball pro.", "Piraven", Book.Genre.SCIENCE_FICTION);
 
-        assertTrue(library.addItem(validBook), "Should successfully add a valid book");
+        assertTrue(library.addItem(validBook), "Successfully add a valid book");
         assertEquals(1, library.getItems().size());
 
-        assertFalse(library.addItem(validBook), "Should return false when adding the exact same object again");
+        assertFalse(library.addItem(validBook), "Return false when adding the exact same object again");
 
-        assertFalse(library.addItem(invalidIdBook), "Should return false for an invalid ID format");
-        assertFalse(library.addItem(invalidIsbnBook), "Should return false for an invalid ISBN-13 format");
+        assertFalse(library.addItem(invalidIdBook), "Return false for an invalid ID format");
+        assertFalse(library.addItem(invalidIsbnBook), "Return false for an invalid ISBN-13 format");
     }
 
     @Test
@@ -91,7 +91,7 @@ public class LibraryTest {
 
         assertFalse(library.removeItem(dvd), "Return false when trying to remove an item that is already removed");
 
-        Item nonExistentItem = new Magazine("0000999", Item.Status.IN_STORE, "Donda", 1, "Kanye West");
+        Item nonExistentItem = new Magazine("0006767", Item.Status.IN_STORE, "Donda", 1, "Kanye West");
         assertFalse(library.removeItem(nonExistentItem), "Should return false for items that were never added to the library");
     }
 }
